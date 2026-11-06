@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ruang Belajar - Evaluasi & Refleksi</title>
+
+<style>
+:root {
+  --brown:#684832;
+  --brown2:#8a6548;
+  --cream:#f5eee3;
+  --paper:#fffdf9;
+  --ink:#302820;
+  --muted:#827568;
+  --line:#e8ddcf;
+}
+* {box-sizing:border-box}
+body {
+  margin:0;
+  background:#f7f4ef;
+  color:var(--ink);
+  font-family:Arial,sans-serif;
+}
+button,input,textarea {font:inherit}
+button {cursor:pointer}
+header {
+  background:var(--paper);
+  border-bottom:1px solid var(--line);
+}
+nav {
+  max-width:1050px;
+  margin:auto;
+  padding:15px 20px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+.brand {
+  color:var(--brown);
+  font-size:19px;
+  font-weight:bold;
+}
+.navbtn {
+  border:0;
+  padding:10px 13px;
+  background:transparent;
+  color:var(--brown);
+  border-radius:9px;
+}
+.navbtn:hover {background:var(--cream)}
+main {
+  max-width:950px;
+  margin:30px auto;
+  padding:0 18px 50px;
+}
+.hero {
+  background:linear-gradient(120deg,#eadcc9,#fffaf3);
+  padding:35px;
+  border-radius:22px;
+  border:1px solid #e6d7c4;
+}
+.hero h1 {
+  color:var(--brown);
+  font-size:36px;
+  margin:10px 0;
+}
+.hero p {
+  color:#715f4f;
+  line-height:1.7;
+}
+.cards {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+  margin-top:20px;
+}
+.choice {
+  background:var(--paper);
+  border:1px solid var(--line);
+  padding:25px;
+  border-radius:17px;
+  text-align:left;
+  color:var(--brown);
+}
+.choice:hover {background:var(--cream)}
+.choice h3 {margin-bottom:8px}
+.choice p {color:var(--muted);line-height:1.5}
+.panel {
+  background:var(--paper);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:25px;
+  margin-top:20px;
+}
+h2 {color:var(--brown)}
+.sub {color:var(--muted);line-height:1.6}
+.field {margin:17px 0}
+label {
+  display:block;
+  font-weight:bold;
+  margin-bottom:8px;
+}
+input[type=text],input[type=password],textarea {
+  width:100%;
+  padding:13px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  background:white;
+}
+textarea {min-height:95px;resize:vertical}
+.btn {
+  border:0;
+  padding:12px 18px;
+  border-radius:10px;
+  background:var(--brown);
+  color:white;
+  font-weight:bold;
+}
+.btn.secondary {
+  background:var(--cream);
+  color:var(--brown);
+}
+.btn:disabled {opacity:.5}
+.btnrow {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-top:20px;
+}
+.notice {
+  background:#f7f0e6;
+  border:1px solid #e8d8c4;
+  padding:13px;
+  border-radius:10px;
+  color:#6c523c;
+  line-height:1.5;
+}
+.hidden {display:none!important}
+.question {
+  padding:18px 0;
+  border-bottom:1px solid var(--line);
+}
+.qtitle {
+  font-weight:bold;
+  line-height:1.5;
+  margin-bottom:12px;
+}
+.option {
+  display:flex;
+  gap:10px;
+  padding:11px;
+  border:1px solid var(--line);
+  border-radius:9px;
+  margin:8px 0;
+  background:white;
+  cursor:pointer;
+  line-height:1.5;
+}
+.option input {accent-color:var(--brown)}
+.progress-wrap {
+  height:8px;
+  background:#eee5da;
+  border-radius:20px;
+  overflow:hidden;
+  margin:12px 0;
+}
+.progress {
+  height:100%;
+  width:0;
+  background:#9a7655;
+}
+.stats {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:10px;
+  margin:20px 0;
+}
+.stat {
+  background:var(--cream);
+  padding:15px;
+  border-radius:12px;
+}
+.stat strong {
+  display:block;
+  font-size:25px;
+  color:var(--brown);
+}
+.stat span {font-size:12px;color:var(--muted)}
+.table-wrap {overflow-x:auto}
+table {
+  width:100%;
+  border-collapse:collapse;
+  min-width:600px;
+}
+th,td {
+  text-align:left;
+  padding:12px;
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+}
+th {background:var(--cream);color:var(--brown)}
+.reflection-card {
+  background:white;
+  border:1px solid var(--line);
+  border-radius:11px;
+  padding:15px;
+  margin:12px 0;
+}
+.reflection-card h4 {color:var(--brown)}
+.reflection-card p {white-space:pre-wrap;line-height:1.5}
+footer {
+  text-align:center;
+  color:var(--muted);
+  padding:25px;
+  font-size:12px;
+}
+@media(max-width:650px) {
+  .cards {grid-template-columns:1fr}
+  .hero {padding:23px}
+  .hero h1 {font-size:28px}
+  .panel {padding:18px}
+  .stats {grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <div class="brand">📚 RUANG BELAJAR</div>
+  <div>
+    <button class="navbtn" onclick="showHome()">Beranda</button>
+    <button class="navbtn" onclick="showStudent()">Murid</button>
+    <button class="navbtn" onclick="showTeacher()">Guru</button>
+  </div>
+</nav>
+</header>
+
+<main>
+
+<!-- BERANDA -->
+<section id="homeView">
+  <div class="hero">
+    <p>BAHASA INDONESIA · KELAS XI</p>
+    <h1>Evaluasi & Refleksi Pembelajaran</h1>
+    <p>
+      Uji pemahamanmu tentang penyusunan teks berita,
+      kemudian ceritakan pengalaman belajarmu.
+      Setiap proses belajar adalah langkah menuju lebih baik.
+    </p>
+    <div style="font-size:55px">📝 📚</div>
+  </div>
+
+  <h2>Silakan Pilih Halaman</h2>
+  <div class="cards">
+    <button class="choice" onclick="showStudent()">
+      <div style="font-size:35px">✍️</div>
+      <h3>Halaman Murid</h3>
+      <p>Isi identitas, kerjakan soal evaluasi, dan isi refleksi pembelajaran.</p>
+    </button>
+
+    <button class="choice" onclick="showTeacher()">
+      <div style="font-size:35px">📊</div>
+      <h3>Halaman Guru</h3>
+      <p>Lihat nilai evaluasi dan jawaban refleksi seluruh murid.</p>
+    </button>
+  </div>
+
+  <div class="notice" style="margin-top:20px">
+    Materi: Penyusunan Teks Berita, ADIKSIMBA,
+    Angle Berita, dan Piramida Terbalik.
+  </div>
+</section>
+
+<!-- IDENTITAS MURID -->
+<section id="studentView" class="hidden">
+  <div class="panel">
+    <h2>Identitas Murid</h2>
+    <p class="sub">Lengkapi identitas sebelum memulai evaluasi.</p>
+
+    <div class="field">
+      <label>Nama Lengkap</label>
+      <input id="studentName" type="text" placeholder="Masukkan nama lengkap">
+    </div>
+
+    <div class="field">
+      <label>Kelas</label>
+      <input id="studentClass" type="text" placeholder="Contoh: XI A">
+    </div>
+
+    <div class="notice">
+      Kerjakan soal secara mandiri dan pilih satu jawaban yang paling tepat.
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="startQuiz()">Mulai Evaluasi</button>
+      <button class="btn secondary" onclick="showHome()">Kembali</button>
+    </div>
+  </div>
+</section>
+
+<!-- EVALUASI -->
+<section id="quizView" class="hidden">
+  <div class="panel">
+    <h2>Kuis Penyusunan Teks Berita</h2>
+    <p class="sub">Jawablah 10 pertanyaan berikut dengan benar.</p>
+
+    <div id="progressText">0 dari 10 soal dijawab</div>
+    <div class="progress-wrap">
+      <div class="progress" id="progressBar"></div>
+    </div>
+
+    <div id="questions"></div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="goReflection()">Lanjut ke Refleksi</button>
+      <button class="btn secondary" onclick="showHome()">Keluar</button>
+    </div>
+  </div>
+</section>
+
+<!-- REFLEKSI -->
+<section id="reflectionView" class="hidden">
+  <div class="panel">
+    <h2>Refleksi Pembelajaran</h2>
+    <p class="sub">
+      Ceritakan pengalaman dan pemahamanmu setelah mengikuti pembelajaran.
+    </p>
+
+    <div class="field">
+      <label>1. Apa hal baru yang kamu pelajari tentang penyusunan teks berita?</label>
+      <textarea id="r1" placeholder="Tuliskan jawabanmu..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>2. Bagian materi apa yang paling kamu pahami? Jelaskan alasannya.</label>
+      <textarea id="r2" placeholder="Tuliskan jawabanmu..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>3. Bagian materi apa yang masih sulit kamu pahami?</label>
+      <textarea id="r3" placeholder="Tuliskan jawabanmu..."></textarea>
+    </div>
+
+    <div class="field">
+      <label>4. Apa yang akan kamu lakukan agar lebih memahami cara menyusun teks berita?</label>
+      <textarea id="r4" placeholder="Tuliskan jawabanmu..."></textarea>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" id="submitBtn" onclick="submitAll()">
+        Kirim Evaluasi & Refleksi
+      </button>
+      <button class="btn secondary" onclick="showQuiz()">Kembali ke Soal</button>
+    </div>
+  </div>
+</section>
+
+<!-- SELESAI -->
+<section id="doneView" class="hidden">
+  <div class="panel" style="text-align:center">
+    <div style="font-size:55px">🎉</div>
+    <h2>Jawaban Berhasil Dikirim!</h2>
+    <p class="sub">Terima kasih telah mengikuti evaluasi dan refleksi pembelajaran.</p>
+    <div class="notice" id="scoreResult"></div>
+    <button class="btn" onclick="resetStudent()">Kembali ke Beranda</button>
+  </div>
+</section>
+
+<!-- HALAMAN GURU -->
+<section id="teacherView" class="hidden">
+
+  <div class="panel" id="teacherLogin">
+    <h2>Login Guru</h2>
+    <p class="sub">Masukkan PIN untuk membuka dashboard guru.</p>
+
+    <div class="field">
+      <label>PIN Guru</label>
+      <input id="teacherPin" type="password" placeholder="Masukkan PIN">
+    </div>
+
+    <div id="loginMessage" class="notice hidden"></div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="loginTeacher()">Masuk</button>
+      <button class="btn secondary" onclick="showHome()">Kembali</button>
+    </div>
+  </div>
+
+  <div class="panel hidden" id="teacherDashboard">
+    <h2>Dashboard Guru</h2>
+    <p class="sub">Rekap hasil evaluasi dan refleksi murid.</p>
+
+    <div class="stats">
+      <div class="stat">
+        <strong id="totalStudents">0</strong>
+        <span>Jumlah Murid</span>
+      </div>
+      <div class="stat">
+        <strong id="averageScore">0</strong>
+        <span>Rata-rata Nilai</span>
+      </div>
+      <div class="stat">
+        <strong id="highestScore">0</strong>
+        <span>Nilai Tertinggi</span>
+      </div>
+    </div>
+
+    <div class="btnrow">
+      <button class="btn" onclick="loadDashboard()">Perbarui Data</button>
+      <button class="btn secondary" onclick="exportCsv()">Unduh Rekap CSV</button>
+      <button class="btn secondary" onclick="logoutTeacher()">Keluar</button>
+    </div>
+
+    <div class="field">
+      <label>Cari Nama atau Kelas</label>
+      <input id="searchStudent" type="text" placeholder="Cari murid..." oninput="renderTable()">
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Kelas</th>
+            <th>Nilai</th>
+            <th>Benar</th>
+            <th>Waktu</th>
+            <th>Detail</th>
+          </tr>
+        </thead>
+        <tbody id="resultRows">
+          <tr><td colspan="6">Belum ada data.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="color:var(--brown);margin-top:28px">Jawaban Refleksi Murid</h3>
+    <div id="reflectionResults">
+      <p class="sub">Pilih tombol detail untuk membaca refleksi murid.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  Ruang Belajar · Evaluasi dan Refleksi Pembelajaran Bahasa Indonesia
+</footer>
+
+
+<script>
+// Semua komunikasi ke Google Apps Script dilakukan melalui Netlify Function.
+async function callApi(action, data = {}) {
+  const response = await fetch('/.netlify/functions/api', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action, ...data })
+  });
+
+  const result = await response.json();
+  if (!response.ok || !result) {
+    throw new Error((result && result.message) || 'Permintaan gagal diproses.');
+  }
+  return result;
+}
+
+
+// DAFTAR SOAL
+const QUESTIONS = [
+{
+q:"Penyusunan teks berita merupakan kegiatan ....",
+o:[
+"Mengarang cerita berdasarkan imajinasi penulis",
+"Mengolah informasi peristiwa menjadi tulisan jurnalistik yang faktual",
+"Menuliskan pendapat pribadi tanpa data",
+"Menyusun percakapan tokoh dalam cerita"
+]
+},
+{
+q:"Hal pertama yang perlu dilakukan sebelum menulis teks berita adalah ....",
+o:[
+"Menentukan judul yang menarik",
+"Mengumpulkan dan mengidentifikasi informasi peristiwa",
+"Menulis bagian penutup",
+"Memilih ilustrasi berita"
+]
+},
+{
+q:"Unsur ADIKSIMBA yang menjawab pertanyaan tentang pelaku peristiwa adalah ....",
+o:["Apa","Di mana","Siapa","Bagaimana"]
+},
+{
+q:"Pertanyaan 'Mengapa peristiwa tersebut dapat terjadi?' digunakan untuk menemukan unsur ....",
+o:["Mengapa","Kapan","Siapa","Di mana"]
+},
+{
+q:"Informasi tentang waktu terjadinya suatu peristiwa termasuk unsur ....",
+o:["Apa","Kapan","Bagaimana","Mengapa"]
+},
+{
+q:"Dalam penyusunan berita, angle berita berarti ....",
+o:[
+"Tempat berlangsungnya peristiwa",
+"Sudut pandang atau fokus yang dipilih dalam memberitakan peristiwa",
+"Urutan nama narasumber",
+"Kalimat penutup berita"
+]
+},
+{
+q:"Tujuan menentukan angle berita sebelum menulis adalah ....",
+o:[
+"Agar berita berisi banyak opini",
+"Agar fokus dan arah pemberitaan menjadi jelas",
+"Agar berita menjadi sepanjang mungkin",
+"Agar unsur berita tidak perlu lengkap"
+]
+},
+{
+q:"Piramida terbalik dalam penulisan berita menempatkan informasi paling penting pada bagian ....",
+o:["Akhir berita","Tengah berita","Awal berita","Catatan kaki"]
+},
+{
+q:"Bagian berita yang biasanya memuat inti atau pokok informasi terpenting disebut ....",
+o:["Teras berita","Ekor berita","Ilustrasi","Identitas penulis"]
+},
+{
+q:"Setelah informasi terkumpul dan angle ditentukan, langkah berikutnya dalam penyusunan berita adalah ....",
+o:[
+"Menyusun informasi menjadi teks berita secara sistematis",
+"Menghapus semua fakta pendukung",
+"Mengubah fakta agar lebih dramatis",
+"Menambahkan pendapat yang tidak terverifikasi"
+]
+}
+];
+
+// Kunci jawaban dihitung di Code.gs
+let answers = Array(QUESTIONS.length).fill(null);
+let student = {name:"",kelas:""};
+let teacherData = [];
+let teacherAuthed = false;
+let teacherToken = "";
+
+const views = [
+"homeView","studentView","quizView",
+"reflectionView","doneView","teacherView"
+];
+
+function showView(id) {
+  views.forEach(v => {
+    document.getElementById(v).classList.toggle("hidden",v!==id);
+  });
+  window.scrollTo(0,0);
+}
+
+function showHome(){showView("homeView")}
+function showStudent(){showView("studentView")}
+function showTeacher(){showView("teacherView")}
+function showQuiz(){showView("quizView")}
+
+function startQuiz() {
+  const name=document.getElementById("studentName").value.trim();
+  const kelas=document.getElementById("studentClass").value.trim();
+
+  if(!name || !kelas) {
+    alert("Nama dan kelas wajib diisi.");
+    return;
+  }
+
+  student={name,kelas};
+  answers=Array(QUESTIONS.length).fill(null);
+  renderQuestions();
+  showView("quizView");
+}
+
+function renderQuestions() {
+  const root=document.getElementById("questions");
+  root.innerHTML="";
+
+  QUESTIONS.forEach((item,i)=>{
+    const wrap=document.createElement("div");
+    wrap.className="question";
+
+    const title=document.createElement("div");
+    title.className="qtitle";
+    title.textContent=(i+1)+". "+item.q;
+    wrap.appendChild(title);
+
+    item.o.forEach((opt,j)=>{
+      const label=document.createElement("label");
+      label.className="option";
+
+      const radio=document.createElement("input");
+      radio.type="radio";
+      radio.name="q"+i;
+      radio.value=j;
+
+      radio.addEventListener("change",()=>{
+        answers[i]=j;
+        updateProgress();
+      });
+
+      const text=document.createElement("span");
+      text.textContent=String.fromCharCode(65+j)+". "+opt;
+
+      label.append(radio,text);
+      wrap.appendChild(label);
+    });
+
+    root.appendChild(wrap);
+  });
+
+  updateProgress();
+}
+
+function updateProgress() {
+  const count=answers.filter(x=>x!==null).length;
+  document.getElementById("progressText").textContent=
+    count+" dari 10 soal dijawab";
+
+  document.getElementById("progressBar").style.width=
+    (count/10*100)+"%";
+}
+
+function goReflection() {
+  if(answers.some(x=>x===null)) {
+    alert("Lengkapi seluruh soal terlebih dahulu.");
+    return;
+  }
+  showView("reflectionView");
+}
+
+// KIRIM DATA KE GOOGLE SHEETS
+async function submitAll() {
+  const reflections=["r1","r2","r3","r4"].map(
+    id=>document.getElementById(id).value.trim()
+  );
+
+  if(reflections.some(x=>!x)) {
+    alert("Mohon isi semua pertanyaan refleksi.");
+    return;
+  }
+
+  const btn=document.getElementById("submitBtn");
+  btn.disabled=true;
+  btn.textContent="Mengirim...";
+
+  const payload={
+    name:student.name,
+    kelas:student.kelas,
+    answers:answers,
+    reflections:reflections
+  };
+
+  try {
+    const res = await callApi("submitStudent", { payload });
+    if(!res || !res.ok) throw new Error((res && res.message) || "Data gagal disimpan.");
+
+    document.getElementById("scoreResult").textContent=
+      "Nilai evaluasimu: "+res.score+
+      "/100 ("+res.correct+" dari 10 jawaban benar).";
+
+    showView("doneView");
+  } catch(err) {
+    alert("Terjadi kesalahan: "+err.message);
+  } finally {
+    btn.disabled=false;
+    btn.textContent="Kirim Evaluasi & Refleksi";
+  }
+}
+
+function resetStudent() {
+  ["studentName","studentClass","r1","r2","r3","r4"]
+  .forEach(id=>document.getElementById(id).value="");
+
+  answers=Array(QUESTIONS.length).fill(null);
+  showHome();
+}
+
+// LOGIN GURU
+async function loginTeacher() {
+  const pin=document.getElementById("teacherPin").value;
+  const msg=document.getElementById("loginMessage");
+
+  if(!pin) {
+    msg.textContent="Masukkan PIN guru.";
+    msg.classList.remove("hidden");
+    return;
+  }
+
+  try {
+    const res = await callApi("verifyTeacher", { pin });
+    if(res && res.ok && res.token) {
+      teacherToken=res.token;
+      teacherAuthed=true;
+      document.getElementById("teacherLogin").classList.add("hidden");
+      document.getElementById("teacherDashboard").classList.remove("hidden");
+      loadDashboard();
+    } else {
+      msg.textContent="PIN guru tidak sesuai.";
+      msg.classList.remove("hidden");
+    }
+  } catch(err) {
+    msg.textContent="Gagal masuk: "+err.message;
+    msg.classList.remove("hidden");
+  }
+}
+
+// DASHBOARD GURU
+async function loadDashboard() {
+  if(!teacherAuthed)return;
+
+  document.getElementById("resultRows").innerHTML=
+    "<tr><td colspan='6'>Memuat data...</td></tr>";
+
+  try {
+    const res = await callApi("getDashboard", { token: teacherToken });
+    if(!res || !res.ok) throw new Error((res && res.message) || "Data tidak dapat dimuat.");
+
+    teacherData=res.rows || [];
+    const scores=teacherData.map(x=>Number(x.score)||0);
+
+    document.getElementById("totalStudents").textContent=teacherData.length;
+    document.getElementById("averageScore").textContent=
+      scores.length ? (scores.reduce((a,b)=>a+b,0)/scores.length).toFixed(1) : "0";
+    document.getElementById("highestScore").textContent=
+      scores.length ? Math.max(...scores) : "0";
+
+    renderTable();
+  } catch(err) {
+    alert("Gagal memuat data: "+err.message);
+    document.getElementById("resultRows").innerHTML=
+      "<tr><td colspan='6'>Gagal memuat data.</td></tr>";
+  }
+}
+
+function renderTable() {
+  const query=(document.getElementById("searchStudent").value||"").toLowerCase();
+
+  const rows=teacherData.filter(x=>
+    (x.name+" "+x.kelas).toLowerCase().includes(query)
+  );
+
+  const root=document.getElementById("resultRows");
+  root.innerHTML="";
+
+  if(!rows.length) {
+    root.innerHTML="<tr><td colspan='6'>Belum ada data.</td></tr>";
+    return;
+  }
+
+  rows.forEach(x=>{
+    const tr=document.createElement("tr");
+
+    [x.name,x.kelas,x.score,x.correct+"/10",x.timestamp]
+    .forEach(v=>{
+      const td=document.createElement("td");
+      td.textContent=v;
+      tr.appendChild(td);
+    });
+
+    const td=document.createElement("td");
+    const b=document.createElement("button");
+
+    b.className="btn secondary";
+    b.textContent="Lihat";
+    b.style.padding="7px 10px";
+    b.onclick=()=>showReflectionDetail(x);
+
+    td.appendChild(b);
+    tr.appendChild(td);
+    root.appendChild(tr);
+  });
+}
+
+// DETAIL REFLEKSI
+function showReflectionDetail(x) {
+  const root=document.getElementById("reflectionResults");
+  root.innerHTML="";
+
+  const heading=document.createElement("div");
+  heading.className="notice";
+  heading.textContent=x.name+" · "+x.kelas+" · Nilai "+x.score;
+  root.appendChild(heading);
+
+  const labels=[
+    "Hal baru yang dipelajari",
+    "Materi yang paling dipahami",
+    "Materi yang masih sulit",
+    "Rencana belajar selanjutnya"
+  ];
+
+  (x.reflections||[]).forEach((answer,i)=>{
+    const card=document.createElement("div");
+    card.className="reflection-card";
+
+    const h=document.createElement("h4");
+    h.textContent=(i+1)+". "+labels[i];
+
+    const p=document.createElement("p");
+    p.textContent=answer||"—";
+
+    card.append(h,p);
+    root.appendChild(card);
+  });
+}
+
+// UNDUH HASIL CSV
+function exportCsv() {
+  const headers=[
+    "Nama","Kelas","Nilai","Jawaban Benar",
+    "Waktu Kirim","Refleksi 1","Refleksi 2",
+    "Refleksi 3","Refleksi 4"
+  ];
+
+  const rows=teacherData.map(x=>[
+    x.name,x.kelas,x.score,x.correct,x.timestamp,
+    ...(x.reflections||[])
+  ]);
+
+  const csv=[headers,...rows].map(row=>
+    row.map(v=>'"'+String(v??"").replace(/"/g,'""')+'"').join(",")
+  ).join("\r\n");
+
+  const blob=new Blob(["\uFEFF"+csv],{
+    type:"text/csv;charset=utf-8;"
+  });
+
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;
+  a.download="Rekap_Evaluasi_Refleksi.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function logoutTeacher() {
+  teacherAuthed=false;
+  teacherData=[];
+
+  document.getElementById("teacherPin").value="";
+  document.getElementById("teacherDashboard").classList.add("hidden");
+  document.getElementById("teacherLogin").classList.remove("hidden");
+
+  showHome();
+}
+
+</script>
+</body>
+</html>
+
+  </body>
+</html>
